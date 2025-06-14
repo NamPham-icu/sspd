@@ -21,6 +21,35 @@ In that case, you must see the "Import Fonts".
 
 ### 20250614-Oscilloscope-plotting.py
 
+This code gets the data from Keysight Oscilloscope, visualize the data, and perform a damping oscillation curve fitting.
+This code is meant to analyze the pulse ringing in a pulse waveform, which is caused by unmatching circuit impedance.
+
+First, the file must be in .csv file format. First, on Keysight I/O Interaction, acquire data by giving SCPI commands as below:
+
+```
+:WAV:SOUR CHAN1
+:WAV:MODE NORM
+:WAV:FORM ASCii
+:WAV:XINC?
+:WAV:YINC?
+:WAV:DATA?   
+```
+
+Next, copy the response of `:WAV:DATA?` and save into a .csv file.
+
+Then, you can start working on the code.
+Save the data file to the same directory as this code.
+Otherwise you have to explocitly indicate the directory path in this code.
+
+Then, run the code.
+You will get a raw plotted graph.
+
+If you want to proceed to curve fit, first you have to manually extract the analyzing interval.
+The code will ask you the starting id and ending id.
+
+Then, it will automatically find the offset, initial values, and do the fitting.
+Now, you will obtain the parameters of the fitted curve and the evaluations.
+
 ## Appendix
 ### Import Fonts
 
