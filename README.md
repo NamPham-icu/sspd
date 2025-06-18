@@ -21,6 +21,8 @@ In that case, you must see the "Import Fonts".
 
 ### 20250614-Oscilloscope-plotting.py
 
+Last edit: 2025/06/19
+
 This code gets the data from Keysight Oscilloscope, visualize the data, and perform a damping oscillation curve fitting.
 This code is meant to analyze the pulse ringing in a pulse waveform, which is caused by unmatching circuit impedance.
 
@@ -49,6 +51,51 @@ The code will ask you the starting id and ending id.
 
 Then, it will automatically find the offset, initial values, and do the fitting.
 Now, you will obtain the parameters of the fitted curve and the evaluations.
+
+## Pulse Waveform Generator & Measurement Tool
+
+This Python script automates the process of:
+
+- Generating a pulse waveform using a function generator (AFG)
+- Capturing the waveform via oscilloscope
+- Saving raw data as CSV
+- Saving a plot as PNG
+- Recording measurement parameters as metadata
+
+### Requirements
+
+- Python 3.8+
+- Libraries:
+  - `numpy`
+  - `matplotlib`
+  - `pyvisa`
+  - `pandas` (optional)
+
+### Setup
+
+Ensure your VISA-compatible devices (e.g., Tektronix AFG/DSO) are connected and recognized by NI-VISA.
+
+```bash
+pip install numpy matplotlib pyvisa pandas
+```
+
+### How to use
+1. Edit the VISA resource addresses in the script.
+2. Run the script.
+3. Input waveform parameters when prompted.
+4. The output directory will be automatically created with:
+   - waveform_data.csv
+   - waveform_plt.png
+   - metadata.txt
+
+### Notes
+- Supports single-channel waveform capture (CH1).
+- Waveform format are fixed; modify in-code if needed.
+
+### Further information
+- For SCPI commands for Keysight Oscilloscope, go to ~/Personal/NamPham/Instruments and see *Keysight-SCPIcommands-manual.pdf*.
+- For SCPI commads for Tektronix AFG, go to ~/Personal/NamPham/Instruments and see *AFG3000-Series-Arbitrary-Function-Generator-Programmer-EN.pdf*.
+- For pyvisa library, visit *https://pyvisa.readthedocs.io/en/latest/introduction/index.html*
 
 ## Appendix
 ### Import Fonts
