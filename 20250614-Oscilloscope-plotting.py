@@ -16,14 +16,14 @@ file_path_name = os.os.path.join(file_path, file_name)
 delimiter = ','
 
 try:
-  with open(file_path, 'r') as file:
-    data = np.loadtxt(file_path, delimiter=delimiter, skiprows=0) # loading the data
+  with open(file_path_name, 'r') as file:
+    data = np.loadtxt(file_path_name, delimiter=delimiter, skiprows=0) # loading the data
     print(f'File loaded successfully!')
     print(f'Data: \n{data}\ndata type = {type(data)} \ndata.shape = {data.shape}')
 except FileNotFoundError:
-  print(f'Error: File {file_path} not found')
+  print(f'Error: File {file_path_nam} not found')
 except ValueError:
-  print(f'Error: Format of the file {file_path} is not compatible')
+  print(f'Error: Format of the file {file_path_nam} is not compatible')
 except Exception as e:
   print(f'An error occurred: {e}')
 
