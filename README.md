@@ -73,10 +73,19 @@ This Python script automates the process of:
   - `ipywidgets`: 8.1.7
   - `Ipython`: 8.27.0
   - `pandas` (optional)
+  - For further settings, see *20250619-jupyter-version.txt*.
 
 ### Setup
 
-Ensure your VISA-compatible devices (e.g., Tektronix AFG/DSO) are connected and recognized by NI-VISA.
+Ensure your VISA-compatible devices (e.g., Tektronix AFG/DSO) are connected and recognized by NI-VISA. If they are not properly recognized by NI-VISA, the code will output the instruments' IDs, but in fact the PC is not connected to the instruments, so you cannot control them (Or the code will output error as "VisaIOError: VI_ERROR_SYSTEM_ERROR (-1073807360): Unknown system error (miscellaneous error).")
+
+After that, you can check if NI-VISA is properly installed or not by command
+
+```python
+import pyvisa
+rm = pyvisa.ResourceManager()
+print(rm.visalib)
+```
 
 ```bash
 pip install numpy matplotlib pyvisa pandas
@@ -94,6 +103,7 @@ pip install numpy matplotlib pyvisa pandas
 ### Notes
 - Supports single-channel waveform capture (CH1).
 - Waveform format are fixed; modify in-code if needed.
+- In "Measurement and Saving" a line was added to slice off the header of data from oscilloscope. However, the data format might be different for different oscilloscope. If you are using anything but KEYSIGHT InfiniiVision DSOX2000 series, check the data format before using!
 
 ### Further information
 - For SCPI commands for Keysight Oscilloscope, go to ~/Personal/NamPham/Instruments and see *Keysight-SCPIcommands-manual.pdf*.
@@ -101,6 +111,10 @@ pip install numpy matplotlib pyvisa pandas
 - For pyvisa library, visit *https://pyvisa.readthedocs.io/en/latest/introduction/index.html*
 
 ## Appendix
+
+### About Python in PC
+Always add 'py -m' before any command. I don't know why, but it works.
+
 ### Import Fonts
 
 **STEP1**: check if the font is installed
@@ -129,5 +143,14 @@ font_prop = fm.FontProperties(fname=font_path)
 
 **STEP4** (if you want to use the font permanently): Install the font into your PC
 
-Right click the .ttf file and click "install".
-You might need administrator's previleges. 
+Right-click the .ttf file and click "install".
+You might need an administrator's privileges. 
+
+### NI-VISA
+**STEP 1** Open NI package manager.
+
+**STEP 2** Make sure the NI package manager is updated to the latest version.
+
+**STEP 3** From "Installed", find "NI-VISA", choose all, and install.
+
+**STEP 4** If this doesn't work, seek help in *C:¥User¥Public¥Public\ Document¥National\ Instruments¥NI-Visa¥Documentation¥NI-VISA.NET\ help(Latest)* in Whale PC. Or, *hettps://documentation.help/NI-VISA/*
