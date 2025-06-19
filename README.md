@@ -64,11 +64,14 @@ This Python script automates the process of:
 
 ### Requirements
 
-- Python 3.8+
+- Python 3.12+
+- Jupyter lab: 4.2.5
 - Libraries:
   - `numpy`
   - `matplotlib`
   - `pyvisa`
+  - `ipywidgets`: 8.1.7
+  - `Ipython`: 8.27.0
   - `pandas` (optional)
 
 ### Setup
